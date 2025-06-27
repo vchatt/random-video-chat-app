@@ -69,9 +69,10 @@ function createPeerConnection(partnerId, isInitiator) {
   };
 
   peer.ontrack = (e) => {
-    console.log('Remote stream added');
-    remoteVideo.srcObject = e.streams[1];
-  };
+  console.log('Remote stream added', e.streams[0]);
+  remoteVideo.srcObject = e.streams[0];
+  remoteVideo.play(); // Ensure the video is playing
+};
 
   localStream.getTracks().forEach(track => peer.addTrack(track, localStream));
 
